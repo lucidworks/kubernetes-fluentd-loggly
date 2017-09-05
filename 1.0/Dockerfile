@@ -12,17 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# This Dockerfile will build an image that is configured
-# to run Fluentd with an Elasticsearch plug-in and the
-# provided configuration file.
-# TODO(a-robinson): Use a lighter base image, e.g. some form of busybox.
-# The image acts as an executable for the binary /usr/sbin/td-agent.
-# Note that fluentd is run with root permssion to allow access to
-# log files with root only access under /var/log/containers/*
-# Please see http://docs.fluentd.org/articles/install-by-deb for more
-# information about installing fluentd using deb package.
-
-FROM gcr.io/google_containers/ubuntu-slim:0.6
+FROM lucidworks/fusion:appkit
 
 # Ensure there are enough file descriptors for running Fluentd.
 RUN ulimit -n 65536
@@ -37,6 +27,10 @@ COPY build.sh /tmp/build.sh
 RUN /tmp/build.sh
 
 ENV LD_PRELOAD /opt/td-agent/embedded/lib/libjemalloc.so
+
+RUN /opt/fusion/bin/fusion start
+
+RUN service td-agent restart
 
 # Run the Fluentd service.
 ENTRYPOINT ["td-agent"]

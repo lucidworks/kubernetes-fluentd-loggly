@@ -28,13 +28,12 @@ apt-get install -y -q --no-install-recommends \
 # Needed to allow access to /var/log/docker/... files.
 sed -i -e "s/USER=td-agent/USER=root/" -e "s/GROUP=td-agent/GROUP=root/" /etc/init.d/td-agent
 
-# Install the Elasticsearch Fluentd plug-in.
+# Install fluentd plugins using td-agent-gem
 # http://docs.fluentd.org/articles/plugin-management
-td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 0.24.0
-td-agent-gem install --no-document fluent-plugin-elasticsearch -v 1.5.0
-
-# install the fluent-plugin-loggly gem from Ruby Gems or from GitHub
-td-agent-gem install --no-document fluent-plugin-loggly -v 0.0.9
+td-agent-gem install --no-document fluent-plugin-kubernetes_metadata_filter -v 0.29.0
+td-agent-gem install --no-document fluent-plugin-grok-parser -v 2.1.4
+td-agent-gem install --no-document fluent-plugin-out-http-ext
+td-agent-gem install --no-document fluent-plugin-json-transform -v 0.0.2
 
 # Remove docs and postgres references
 rm -rf /opt/td-agent/embedded/share/doc \
