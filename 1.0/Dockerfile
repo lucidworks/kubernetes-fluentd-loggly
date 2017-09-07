@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM lucidworks/fusion:appkit
+FROM gcr.io/google_containers/ubuntu-slim:0.6
 
 # Ensure there are enough file descriptors for running Fluentd.
 RUN ulimit -n 65536
@@ -27,10 +27,6 @@ COPY build.sh /tmp/build.sh
 RUN /tmp/build.sh
 
 ENV LD_PRELOAD /opt/td-agent/embedded/lib/libjemalloc.so
-
-RUN /opt/fusion/bin/fusion start
-
-RUN service td-agent restart
 
 # Run the Fluentd service.
 ENTRYPOINT ["td-agent"]
