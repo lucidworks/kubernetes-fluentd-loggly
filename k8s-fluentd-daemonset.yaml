@@ -15,13 +15,10 @@ spec:
         kubernetes.io/cluster-service: "true"
         version: v1.0
     spec:
-     # kubectl create secret docker-registry lucidworks-dockerhub --docker-server=https://registry.hub.docker.com/v1/ --docker-username="$HUB_USERNAME" --docker-password="$HUB_PASSWORD" --docker-email="$HUB_EMAIL"
-     # imagePullSecrets:
-     #   - name: lucidworks-dockerhub
       containers:
         - name: fluentd-fusion
           imagePullPolicy: IfNotPresent # TODO: Remove
-          image: fluentdtest #lucidworks/kubernetes-fluentd-fusion:1.0
+          image: lucidworks/kubernetes-fluentd-fusion:20170908121509
           command:
             - '/bin/sh'
             - '-c'
@@ -84,12 +81,7 @@ spec:
         #      mountPath: /opt/fusion/var/log/zookeeper
         #    - name: uilog
         #      mountPath: /opt/fusion/var/log/ui
-
-
-      # nodeSelector:
-      #   alpha.kubernetes.io/fluentd-ds-ready: "true"
       terminationGracePeriodSeconds: 0
-
       volumes:
         - name: varlog
           hostPath:
