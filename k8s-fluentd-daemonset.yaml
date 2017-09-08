@@ -18,7 +18,7 @@ spec:
       containers:
         - name: fluentd-fusion
           imagePullPolicy: IfNotPresent
-          image: lucidworks/kubernetes-fluentd-fusion:20170908121509
+          image: lucidworks/fluentd-fusion:20170908121509
           command:
             - '/bin/sh'
             - '-c'
