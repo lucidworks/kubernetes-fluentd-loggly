@@ -8,6 +8,7 @@ metadata:
     kubernetes.io/cluster-service: "true"
     version: v1.00
 spec:
+  serviceAccountName: tiller
   template:
     metadata:
       labels:
