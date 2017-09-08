@@ -8,7 +8,6 @@ metadata:
     kubernetes.io/cluster-service: "true"
     version: v1.00
 spec:
-  serviceAccountName: tiller
   template:
     metadata:
       labels:
@@ -16,6 +15,7 @@ spec:
         kubernetes.io/cluster-service: "true"
         version: v1.0
     spec:
+      serviceAccountName: tiller
       containers:
         - name: fluentd-fusion
           imagePullPolicy: IfNotPresent
