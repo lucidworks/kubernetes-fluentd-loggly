@@ -28,7 +28,7 @@ spec:
             - name: FUSION_USERNAME
               value: "admin"
             - name: FUSION_PASSWORD
-              value: "password123"
+              value: "&q2#87^zmPX^YFXg"
             - name: FUSION_LOG_COLLECTION
               value: "default"
             - name: FUSION_HOST
