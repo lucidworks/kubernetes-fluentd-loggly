@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: fluentd-fusion
-          imagePullPolicy: IfNotPresent # TODO: Remove
+          imagePullPolicy: IfNotPresent
           image: lucidworks/kubernetes-fluentd-fusion:20170908121509
           command:
             - '/bin/sh'
@@ -31,9 +31,10 @@ spec:
             - name: FUSION_LOG_COLLECTION
               value: "default"
             - name: FUSION_HOST
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP # For local testing, have fusion log to itself.
+              value: "10.101.100.110"
+              #valueFrom:
+              #  fieldRef:
+              #    fieldPath: status.podIP # For local testing, have fusion log to itself.
           resources:
             limits:
               memory: 200Mi
