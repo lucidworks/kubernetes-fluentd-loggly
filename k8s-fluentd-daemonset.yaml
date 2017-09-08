@@ -2,7 +2,6 @@ apiVersion: extensions/v1beta1
 kind: DaemonSet
 metadata:
   name: fluentd-fusion-v1.0
-  namespace: kube-system
   labels:
     k8s-app: fluentd-fusion
     kubernetes.io/cluster-service: "true"
